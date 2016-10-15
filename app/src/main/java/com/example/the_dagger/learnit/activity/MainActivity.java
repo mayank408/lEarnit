@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -17,6 +18,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 
 import com.example.the_dagger.learnit.R;
 import com.example.the_dagger.learnit.adapter.CategoryAdapter;
@@ -53,24 +55,14 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item){
         switch(item.getItemId()){
-            case R.id.action_wallet:
-                Intent intent = new Intent(this,WalletActivity.class);
-                startActivity(intent);
-                // Set the text color to red
-                return true;
+
             case R.id.action_logout:
                 // Set the text color to green
                 AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
                 builder.setTitle("Do you want to log out ?");
-                builder.setCancelable(false);
-
                 builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        SharedPreferences preferences = getApplicationContext().getSharedPreferences(Constants.TAG_SHARED_PREF, Context.MODE_PRIVATE);
-                        SharedPreferences.Editor editor = preferences.edit();
-                        editor.remove("access_token");
-                        editor.apply();
                         Intent intent = new Intent(MainActivity.this, LoginActivity.class);
                         startActivity(intent);
                     }
@@ -81,6 +73,13 @@ public class MainActivity extends AppCompatActivity {
                         dialog.cancel();
                     }
                 });
+                AlertDialog a = builder.create();
+
+                a.show();
+                Button bqe = a.getButton(DialogInterface.BUTTON_POSITIVE);
+                Button bq = a.getButton(DialogInterface.BUTTON_NEGATIVE);
+                bq.setTextColor(Color.BLUE);
+                bqe.setTextColor(Color.BLUE);
                 builder.show();
                 return true;
             default:

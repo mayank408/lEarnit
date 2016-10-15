@@ -21,12 +21,11 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/category_title" />
 
-            <android.support.design.widget.FloatingActionButton
-                android:layout_width="wrap_content"
-                android:src="@drawable/ic_price"
-                android:layout_height="wrap_content"
-                app:fabSize="normal"
-                android:scaleType="centerCrop"
-                android:layout_gravity="end"/>
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/abcd"/>
+
+
         </LinearLayout>
     </android.support.v7.widget.CardView>

@@ -337,5 +337,68 @@
       0
     ],
     "solved": "false"
+  },
+  {
+    "name": "Programming Fundamentals",
+    "id": "food",
+    "theme": "green",
+    "quizzes": [
+      {
+        "type": "single-select",
+        "question": "Who is father of C Language?",
+        "options": [
+         " Bjarne Stroustrup",
+          "James A. Gosling",
+          "Dennis Ritchie",
+          "Dr. E.F. Codd"
+        ],
+        "answer": 3
+      },
+      {
+        "type": "single-select",
+        "question": "C Language developed at _________?",
+        "options": [
+          "AT & T's Bell Laboratories of USA in 1972",
+
+
+         " AT & T's Bell Laboratories of USA in 1970",
+
+         " Sun Microsystems in 1973",
+
+          "Cambridge University in 1972"
+        ],
+        "answer": 1
+      },
+      {
+        "type": "fill-blank",
+        "question": "In which American State did chili con carne originate?",
+        "answer": "Texas"
+      },
+      {
+        "type": "four-quarter",
+        "question": "What is the correct name for a cluster or bunch of bananas?",
+        "options": [
+          "Foot",
+          "Hand",
+          "Flock",
+          "Pod"
+        ],
+        "answer": 1
+      }
+    ],
+    "scores": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "solved": "false"
   }
+
 ]

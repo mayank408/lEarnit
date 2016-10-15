@@ -16,7 +16,7 @@ public class SplashActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
         ImageView imageView = (ImageView) findViewById(R.id.splash_image);
-        Glide.with(this).load(R.mipmap.download).into(imageView);
+        Glide.with(this).load(R.drawable.ab).into(imageView);
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
