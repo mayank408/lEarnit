@@ -60,6 +60,7 @@ public class MainActivity extends AppCompatActivity {
                 // Set the text color to green
                 AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
                 builder.setTitle("Do you want to log out ?");
+
                 builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
