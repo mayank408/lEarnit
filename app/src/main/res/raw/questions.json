@@ -25,23 +25,8 @@
           "Shrinivasan Ramanujahn"
         ],
         "answer": 2
-      },
-      {
-        "type": "fill-blank",
-        "question": "In which American State did chili con carne originate?",
-        "answer": "Texas"
-      },
-      {
-        "type": "four-quarter",
-        "question": "What is the correct name for a cluster or bunch of bananas?",
-        "options": [
-          "Foot",
-          "Hand",
-          "Flock",
-          "Pod"
-        ],
-        "answer": 1
       }
+
     ],
     "scores": [
       0,
@@ -63,63 +48,6 @@
     "theme": "yellow",
     "quizzes": [
       {
-        "type": "fill-blank",
-        "question": "Mole is a popular paste in Mexico. Mole is a mixture of chili’s and what other tasty ingredient?",
-        "answer": "Chocolate"
-      },
-      {
-        "type": "four-quarter",
-        "question": "What is the name of the famous art deco skyscraper in New York City?",
-        "options": [
-          "Trump Tower",
-          "Chrysler building",
-          "Empire State Building",
-          "The New York Times Building"
-        ],
-        "answer": 1
-      },
-      {
-        "type": "multi-select",
-        "question": "Select the names of “The Three Musketeers”.",
-        "options": [
-          "Chevy",
-          "Topeka",
-          "Athos",
-          "Duke",
-          "Porthos",
-          "John Felton",
-          "Aramis"
-        ],
-        "answer": [
-          2,
-          4,
-          6
-        ]
-      },
-      {
-        "type": "toggle-translate",
-        "question": "Which is the correct translation of Zorro?",
-        "options": [
-          [
-            "Zorro",
-            "Dog"
-          ],
-          [
-            "Zorro",
-            "Sword"
-          ],
-          [
-            "Zorro",
-            "Fox"
-          ],
-          [
-            "Zorro",
-            "Coyote"
-          ]
-        ],
-        "answer": 2
-      },
-      {
         "type": "single-select",
         "question": "If a 5,000 coupon bond has a coupon rate of 13 percent, then the coupon payment every year is ___",
         "options": [
@@ -129,34 +57,6 @@
           "130"
         ],
         "answer": 0
-      },
-      {
-        "type": "picker",
-        "question": "How many counters does a backgammon player have?",
-        "min": 0,
-        "max": 30,
-        "answer": 15
-      },
-      {
-        "type": "true-false",
-        "question": "There is a patron saint of The Internet.",
-        "answer": true
-      },
-      {
-        "type": "alpha-picker",
-        "question": " Which letter other than X scores 8 in Scrabble?",
-        "answer": "J"
-      },
-      {
-        "type": "four-quarter",
-        "question": "Four of the worst ten maritime disasters all took place in 1945. In which sea were all four ships sunk?",
-        "options": [
-          "Mediterranean sea",
-          "Baltic Sea",
-          "The Bermuda Triangle",
-          "Black Sea"
-        ],
-        "answer": 1
       },
       {
         "type": "single-select",
@@ -189,12 +89,6 @@
     "id": "history",
     "theme": "blue",
     "quizzes": [
-      {
-        "type": "fill-blank",
-        "question": "The first words spoken on the moon by Buzz Aldrin were these:",
-        "start": "Contact ",
-        "answer": "Light"
-      },
       {
         "type": "single-select",
         "question": "The number of 3-digit numbers divisible by 6, is",
@@ -304,24 +198,6 @@
           "1906"
         ],
         "answer": 1
-      },
-      {
-        "type": "multi-select",
-        "question": "Which states did the United States gain after the Mexican War?",
-        "options": [
-          "Arizona",
-          "New Mexico",
-          "Louisiana",
-          "California",
-          "Nevada",
-          "Utah",
-          "Texas"
-        ],
-        "answer": [
-          1,
-          3,
-          6
-        ]
       }
     ],
     "scores": [
@@ -366,22 +242,6 @@
          " Sun Microsystems in 1973",
 
           "Cambridge University in 1972"
-        ],
-        "answer": 1
-      },
-      {
-        "type": "fill-blank",
-        "question": "In which American State did chili con carne originate?",
-        "answer": "Texas"
-      },
-      {
-        "type": "four-quarter",
-        "question": "What is the correct name for a cluster or bunch of bananas?",
-        "options": [
-          "Foot",
-          "Hand",
-          "Flock",
-          "Pod"
         ],
         "answer": 1
       }

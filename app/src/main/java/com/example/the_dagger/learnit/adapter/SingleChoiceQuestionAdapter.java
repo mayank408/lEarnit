@@ -22,13 +22,14 @@ public class SingleChoiceQuestionAdapter extends RecyclerView.Adapter<SingleChoi
     private ArrayList<SingleChoiceQuestion> singleChoiceQuestionArrayList;
 
     public int index = -1;
+
     @Override
     public SingleChoiceQuestionAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.question_single_choice,parent,false);
+        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.question_single_choice, parent, false);
         return new ViewHolder(itemView);
     }
 
-    public SingleChoiceQuestionAdapter(Context context, ArrayList<SingleChoiceQuestion> singleChoiceQuestionList){
+    public SingleChoiceQuestionAdapter(Context context, ArrayList<SingleChoiceQuestion> singleChoiceQuestionList) {
         this.singleChoiceQuestionArrayList = singleChoiceQuestionList;
     }
 
@@ -36,18 +37,15 @@ public class SingleChoiceQuestionAdapter extends RecyclerView.Adapter<SingleChoi
     public void onBindViewHolder(SingleChoiceQuestionAdapter.ViewHolder holder, int position) {
         int position1 = holder.getAdapterPosition();
         SingleChoiceQuestion singleChoiceQuestion = singleChoiceQuestionArrayList.get(holder.getAdapterPosition());
-        if(getItemCount() == -1){
-            holder.question.setText("No Questions at the moment");
-        }
-        else{
-//            Log.e("Name",singleCategory.getName());
-            holder.question.setText(singleChoiceQuestion.getQuestion());
-            holder.rb0.setText(singleChoiceQuestion.getOptions().get(0));
-            holder.rb1.setText(singleChoiceQuestion.getOptions().get(1));
-            holder.rb2.setText(singleChoiceQuestion.getOptions().get(2));
-            holder.rb3.setText(singleChoiceQuestion.getOptions().get(3));
 
-        }
+//            Log.e("Name",singleCategory.getName());
+        holder.question.setText(singleChoiceQuestion.getQuestion());
+        holder.rb0.setText(singleChoiceQuestion.getOptions().get(0));
+        holder.rb1.setText(singleChoiceQuestion.getOptions().get(1));
+        holder.rb2.setText(singleChoiceQuestion.getOptions().get(2));
+        holder.rb3.setText(singleChoiceQuestion.getOptions().get(3));
+
+
     }
 
     @Override
@@ -61,7 +59,7 @@ public class SingleChoiceQuestionAdapter extends RecyclerView.Adapter<SingleChoi
 //        recyclerView.smoothScrollToPosition(position+1);
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder{
+    public class ViewHolder extends RecyclerView.ViewHolder {
 
         public TextView question;
         public RadioGroup group;
@@ -69,6 +67,7 @@ public class SingleChoiceQuestionAdapter extends RecyclerView.Adapter<SingleChoi
         public RadioButton rb1;
         public RadioButton rb2;
         public RadioButton rb3;
+
         public ViewHolder(View itemView) {
             super(itemView);
             question = (TextView) itemView.findViewById(R.id.questionTitle);

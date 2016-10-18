@@ -2,6 +2,7 @@ package com.example.the_dagger.learnit.model;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.util.Log;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
@@ -11,6 +12,8 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.bumptech.glide.gifdecoder.GifHeaderParser.TAG;
 
 public class Categories implements Parcelable {
 
@@ -25,7 +28,7 @@ public class Categories implements Parcelable {
     private String theme;
     @SerializedName("quizzes")
     @Expose
-    private List<SingleChoiceQuestion> quizzes = new ArrayList<SingleChoiceQuestion>();
+    private ArrayList<SingleChoiceQuestion> quizzes = new ArrayList<SingleChoiceQuestion>();
     @SerializedName("scores")
     @Expose
     private List<Integer> scores = new ArrayList<Integer>();
@@ -117,7 +120,7 @@ public class Categories implements Parcelable {
      * @return
      * The quizzes
      */
-    public List<SingleChoiceQuestion> getQuizzes() {
+    public ArrayList<SingleChoiceQuestion> getQuizzes() {
         return quizzes;
     }
 
@@ -126,8 +129,10 @@ public class Categories implements Parcelable {
      * @param quizzes
      * The quizzes
      */
-    public void setQuizzes(List<SingleChoiceQuestion> quizzes) {
-        this.quizzes = quizzes;
+    public void setQuizzes(ArrayList<SingleChoiceQuestion> quizzes) {
+        ArrayList<SingleChoiceQuestion> quizzes2 = new ArrayList<>(quizzes);
+        this.quizzes = quizzes2;
+        Log.i(TAG, "setQuizzes: "+quizzes.get(0).getQuestion());
     }
 
     /**

@@ -43,7 +43,7 @@ import static com.example.the_dagger.learnit.R.raw.questions;
 
 public class MainActivity extends AppCompatActivity {
 
-    JSONObject singleCategory;
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -93,88 +93,45 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_categories);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        List<Categories> categoryList = getCategories();
-        Log.e("CategoryListSIze", String.valueOf(categoryList.size()));
-        ArrayList<SingleChoiceQuestion> singleChoiceQuestionList = new ArrayList<>();
-        Set<SingleChoiceQuestion> singleChoiceQuestionsSet = new LinkedHashSet<>();
-        for(int i=0;i<categoryList.size();i++){
-            for(int j=0;j<categoryList.get(i).getQuizzes().size();j++){
-                if(singleChoiceQuestionsSet!=null || singleChoiceQuestionsSet.size()>0){
-                    if(!singleChoiceQuestionsSet.equals(categoryList.get(i).getQuizzes().get(j))){
-                        singleChoiceQuestionList.add(categoryList.get(i).getQuizzes().get(j));
-                        Log.e("Quizzes",categoryList.get(i).getQuizzes().get(j).getQuestion());
-                    }
-                }
-                singleChoiceQuestionsSet.add(categoryList.get(i).getQuizzes().get(j));
-            }
-        }
-//        getQuizzes(singleCategory);
-        CategoryAdapter categoryAdapter = new CategoryAdapter(categoryList,this,singleChoiceQuestionList);
+        ArrayList<Categories> categoryList = getCategories();
+        CategoryAdapter categoryAdapter = new CategoryAdapter(categoryList,this);
         RecyclerView categoryRv = (RecyclerView) findViewById(R.id.categoryRv);
         categoryRv.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         categoryRv.setAdapter(categoryAdapter);
         Log.e("List", String.valueOf(categoryList.size()));
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
     }
 
-    private List<Categories> getCategories() {
+    private ArrayList<Categories> getCategories() {
         JSONArray jsonArray;
-        List<Categories> categories = new ArrayList<>();
-        List<SingleChoiceQuestion> singleChoiceQuestions = new ArrayList<>();
+        ArrayList<Categories> categories = new ArrayList<>();
         int j;
         try {
             InputStream is = getResources().openRawResource(questions);
             jsonArray = new JSONArray(convertStreamToString(is));
-            for (j = 0; j < jsonArray.length(); j++) {
+            for (j = 0; j < jsonArray.length(); j++)
+            {
+                JSONObject singleCategory;
+                ArrayList<SingleChoiceQuestion> singleChoiceQuestions = new ArrayList<>();
                 singleCategory = jsonArray.getJSONObject(j);
-                Log.e("Categories", String.valueOf(singleCategory.get("name")));
                 categories.add(new Categories(singleCategory));
-                for(int i=0;i<singleCategory.getJSONArray("quizzes").length();i++) {
-                    if (singleCategory.getJSONArray("quizzes").getJSONObject(i).getString("type").equals("single-select"))
-                        singleChoiceQuestions.add(new SingleChoiceQuestion(singleCategory.getJSONArray("quizzes").getJSONObject(i)));
-                }categories.get(j).setQuizzes(singleChoiceQuestions);
+                for(int i = 0 ; i < singleCategory.getJSONArray("quizzes").length() ; i++)
+                {
+                    singleChoiceQuestions.add(new SingleChoiceQuestion(singleCategory.getJSONArray("quizzes").getJSONObject(i)));
+                    Log.i("TEST", "question of " + categories.get(j).getName().toString() +  " : " + singleChoiceQuestions.get(i).getQuestion());
+                }
+                categories.get(j).setQuizzes(singleChoiceQuestions);
+                singleChoiceQuestions.clear();
             }
+
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
         return categories;
-        // Now iterate through the list
+
     }
 
-//    private ArrayList<SingleChoiceQuestion> getQuizzes(JSONObject singleCategory) {
-//        int i;
-//        ArrayList<SingleChoiceQuestion> singleChoiceQuestionList = new ArrayList<>();
-//        JSONArray quizzes = null;
-//        try {
-//
-//            quizzes = singleCategory.getJSONArray("quizzes");
-//
-//            for (i = 0; i < quizzes.length(); i++) {
-////                if (quizzes.getJSONObject(i).getString("type").equals("multi-select")) {
-////                    questionList.add(new MultipleChoiceQuestion(quizzes.getJSONObject(i)));
-//////                        Log.e("QuizMulti", quizzes.getJSONObject(i).getString("question"));
-////                } else
-//            if (quizzes.getJSONObject(i).getString("type").equals("single-select-item")) {
-//                singleChoiceQuestionList.add(new SingleChoiceQuestion(quizzes.getJSONObject(i)));
-//            }
-////                } else if (quizzes.getJSONObject(i).getString("type").equals("fill-blank")) {
-////                    questionList.add(new InputTextQuestion(quizzes.getJSONObject(i)));
-//////                Log.e("QuizSelect", quizzes.getJSONObject(i).getString("question"));
-////                }
-//            }
-//        } catch (JSONException e) {
-//            e.printStackTrace();
-//        }
-//        return singleChoiceQuestionList;
-//    }
+
 
     private String convertStreamToString(InputStream is) {
         BufferedReader reader = new BufferedReader(new InputStreamReader(is));

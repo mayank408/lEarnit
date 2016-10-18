@@ -28,21 +28,24 @@ public class QuizActivity extends AppCompatActivity {
     TextView moduleCompletedMoney;
 
 
-    @Override
-    public void onBackPressed() {
-        Intent i = new Intent(this,MainActivity.class);
-        startActivity(i);
-    }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        ArrayList<SingleChoiceQuestion> singleChoiceQuestionArrayList = getIntent().getParcelableArrayListExtra("singleChoiceQuestion");
+
+        final ArrayList<SingleChoiceQuestion> singleChoiceQuestionArrayList = getIntent().getParcelableArrayListExtra("singleChoiceQuestion");
+        //ArrayList<SingleChoiceQuestion> singleChoiceQuestionArrayList = new ArrayList<>(singleChoiceQuestionArrayList1);
         answer = getIntent().getIntArrayExtra("answer");
+        position = getIntent().getIntExtra("position",0);
+        Log.e("POSITON", "onCreate: " + position );
         Log.e("Size", String.valueOf(singleChoiceQuestionArrayList.size()));
+        for(int i = 0;i<singleChoiceQuestionArrayList.size();i++)
+        Log.e("Questions", "onCreate: " + singleChoiceQuestionArrayList.get(i).getQuestion() );
         final SingleChoiceQuestionAdapter singleChoiceQuestionAdapter = new SingleChoiceQuestionAdapter(this, singleChoiceQuestionArrayList);
         quizRecyclerView = (RecyclerView) findViewById(R.id.quizRv);
         quizRecyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
@@ -60,14 +63,14 @@ public class QuizActivity extends AppCompatActivity {
                 Log.e("Index", String.valueOf(singleChoiceQuestionAdapter.index));
                 Log.e("Position", String.valueOf(position));
                 if (position == 10) {
-                    Intent resultIntent = new Intent(QuizActivity.this,FullscreenActivity.class);
-                    resultIntent.putExtra("correctAnswer",correctCounter);
+                    Intent resultIntent = new Intent(QuizActivity.this, FullscreenActivity.class);
+                    resultIntent.putExtra("correctAnswer", correctCounter);
                     startActivity(resultIntent);
                     QuizActivity.this.finish();
                 }
                 try {
                     Log.e("Correct Answer", String.valueOf(answer[position]));
-                    if (singleChoiceQuestionAdapter.index == answer[position] && position<10) {
+                    if (singleChoiceQuestionAdapter.index == answer[position] && position < 10) {
                         correctCounter++;
                     }
                 } catch (Exception e) {

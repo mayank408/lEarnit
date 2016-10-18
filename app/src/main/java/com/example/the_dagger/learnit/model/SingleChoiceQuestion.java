@@ -98,6 +98,7 @@ public class SingleChoiceQuestion implements Parcelable {
         }
     };
 
+
     public String getType() {
         return type;
     }
