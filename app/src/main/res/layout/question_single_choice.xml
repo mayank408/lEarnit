@@ -43,24 +43,32 @@
                         android:id="@+id/singleChoice0"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:buttonTint="#3F51B5"
+                        android:checked="false"
                         android:text="Option 1" />
 
                     <android.support.v7.widget.AppCompatRadioButton
                         android:id="@+id/singleChoice1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:buttonTint="#3F51B5"
+                        android:checked="false"
                         android:text="Option 2" />
 
                     <android.support.v7.widget.AppCompatRadioButton
                         android:id="@+id/singleChoice2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:buttonTint="#3F51B5"
+                        android:checked="false"
                         android:text="Option 3" />
 
                     <android.support.v7.widget.AppCompatRadioButton
                         android:id="@+id/singleChoice3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:buttonTint="#3F51B5"
+                        android:checked="false"
                         android:text="Option 4" />
                 </RadioGroup>
             </LinearLayout>

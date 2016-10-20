@@ -190,107 +190,20 @@ public class FullscreenActivity extends AppCompatActivity {
         // Schedule a runnable to display UI elements after a delay
         mHideHandler.removeCallbacks(mHidePart2Runnable);
         mHideHandler.postDelayed(mShowPart2Runnable, UI_ANIMATION_DELAY);
-    }
+        }
 
-    /**
-     * Schedules a call to hide() in [delay] milliseconds, canceling any
-     * previously scheduled calls.
-     */
-    private void delayedHide(int delayMillis) {
+/**
+ * Schedules a call to hide() in [delay] milliseconds, canceling any
+ * previously scheduled calls.
+ */
+private void delayedHide(int delayMillis) {
         mHideHandler.removeCallbacks(mHideRunnable);
         mHideHandler.postDelayed(mHideRunnable, delayMillis);
-    }
+        }
 
-    public void transferMoney(final View view) {
-
-        int amount = (int)(correctCounter * 1.5);
-        String ssoToken = SuperPrefs.newInstance(getApplicationContext()).getString("access_token");
-
-        final Paytm paytm = Paytm.getInstance();
-
-        Map<String, String> header = new HashMap<>();
-        header.put("ssotoken", ssoToken);
-
-        JSONObject body = paytm.getP2pTransferBody(0, 0, SuperPrefs.newInstance(getApplicationContext()).getString("child_phone"), amount, "INR", "Module Completed", "127.0.0.1", "PayTm", "P2P_TRANSFER");
-
-        final ProgressDialog progressDialog = new ProgressDialog(view.getContext());
-        progressDialog.setTitle("Transferring money into your account");
-        progressDialog.setIndeterminate(true);
-        progressDialog.setCancelable(false);
-
-        paytm.p2pTransfer(header, body, new Response.Listener<JSONObject>() {
-            @Override
-            public void onResponse(JSONObject response) {
-                progressDialog.dismiss();
-                try {
-                    final String state = response.getJSONObject("response").getString("state");
-                    final String ssoToken = SuperPrefs.newInstance(view.getContext()).getString("access_token");
-
-                    Log.e("Transact", response.toString(4));
-
-                    AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
-                    builder.setTitle("Enter OTP");
-                    builder.setCancelable(false);
-
-                    final EditText input = new EditText(view.getContext());
-                    input.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
-                    input.setHint("OTP here!!!");
-                    builder.setView(input);
-
-                    builder.setPositiveButton("Submit", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            String otp = input.getText().toString();
-                            try {
-
-                                Map<String, String> header = new HashMap<String, String>();
-                                header.put("ssotoken", ssoToken);
-
-                                JSONObject body = paytm.getValidateTokenBody(state, otp, "127.0.0.1", "PayTM", "P2P_TRANSFER");
-                                paytm.validateToken(header, body, new Response.Listener<JSONObject>() {
-                                    @Override
-                                    public void onResponse(JSONObject response) {
-                                        // TODO : Handle errors
-
-                                        try {
-                                            Toast.makeText(view.getContext(), "Congratulations", Toast.LENGTH_LONG).show();
-                                            Intent intent = new Intent(view.getContext(), WalletActivity.class);
-                                            startActivity(intent);
-                                            finish();
-                                        } catch (Exception e) {
-                                            Toast.makeText(view.getContext(), "Server error", Toast.LENGTH_LONG).show();
-                                            e.printStackTrace();
-                                        }
-                                    }
-                                }, new Response.ErrorListener() {
-                                    @Override
-                                    public void onErrorResponse(VolleyError error) {
-                                        Toast.makeText(view.getContext(), "Error contacting server", Toast.LENGTH_LONG).show();
-                                    }
-                                });
-                            } catch (Exception e) {
-                                e.printStackTrace();
-                            }
-                        }
-                    });
-                    builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            dialog.cancel();
-                        }
-                    });
-                    builder.show();
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                progressDialog.dismiss();
-                Log.e("Transact", error.toString());
-            }
-        });
-        progressDialog.show();
-    }
-}
+public void transferMoney(final View view) {
+        Toast.makeText(this, "Money Transferred To Paytm Wallet!", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(this,MainActivity.class);
+        startActivity(intent);
+        }
+        }

@@ -19,6 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static android.R.id.list;
+import static android.media.CamcorderProfile.get;
 import static com.bumptech.glide.gifdecoder.GifHeaderParser.TAG;
 
 /**
@@ -56,6 +57,8 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
     @Override
     public void onBindViewHolder(CategoryAdapter.ViewHolder holder, final int position) {
         this.position = position;
+
+        Log.e("onBindViewHolder: Ans",String.valueOf(answer ) + String.valueOf(position) );
         Categories singleCategory = listCategories.get(holder.getAdapterPosition());
         if (getItemCount() == -1) {
             holder.title.setText("No Categories at the moment");
@@ -67,6 +70,12 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
         holder.itemView.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
+                int i = 0;
+                while (i < listCategories.get(position).getQuizzes().size()) {
+
+                    answer[i] = listCategories.get(position).getQuizzes().get(i).getAnswer();
+                    i++;
+                }
                 Intent intent = new Intent(context, QuizActivity.class);
                 intent.putExtra("position", position);
                 intent.putExtra("singleAdapter", listCategories.get(position));

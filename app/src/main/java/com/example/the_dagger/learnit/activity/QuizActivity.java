@@ -21,7 +21,7 @@ import java.util.ArrayList;
 
 public class QuizActivity extends AppCompatActivity {
 
-    public static int correctCounter = 0;
+    public  int correctCounter = 0;
     int answer[] = new int[10];
     int position = 0;
     RecyclerView quizRecyclerView;
@@ -39,9 +39,8 @@ public class QuizActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         final ArrayList<SingleChoiceQuestion> singleChoiceQuestionArrayList = getIntent().getParcelableArrayListExtra("singleChoiceQuestion");
-        //ArrayList<SingleChoiceQuestion> singleChoiceQuestionArrayList = new ArrayList<>(singleChoiceQuestionArrayList1);
         answer = getIntent().getIntArrayExtra("answer");
-        position = getIntent().getIntExtra("position",0);
+       // position = getIntent().getIntExtra("position",0);
         Log.e("POSITON", "onCreate: " + position );
         Log.e("Size", String.valueOf(singleChoiceQuestionArrayList.size()));
         for(int i = 0;i<singleChoiceQuestionArrayList.size();i++)
@@ -62,15 +61,15 @@ public class QuizActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Log.e("Index", String.valueOf(singleChoiceQuestionAdapter.index));
                 Log.e("Position", String.valueOf(position));
-                if (position == 10) {
+                if (position == singleChoiceQuestionArrayList.size()-1) {
                     Intent resultIntent = new Intent(QuizActivity.this, FullscreenActivity.class);
                     resultIntent.putExtra("correctAnswer", correctCounter);
                     startActivity(resultIntent);
                     QuizActivity.this.finish();
                 }
                 try {
-                    Log.e("Correct Answer", String.valueOf(answer[position]));
-                    if (singleChoiceQuestionAdapter.index == answer[position] && position < 10) {
+                    Log.e("Correct Answer ", String.valueOf(answer[position]) );
+                    if (singleChoiceQuestionAdapter.index == answer[position] && position < singleChoiceQuestionArrayList.size()) {
                         correctCounter++;
                     }
                 } catch (Exception e) {

@@ -37,8 +37,10 @@ public class SingleChoiceQuestionAdapter extends RecyclerView.Adapter<SingleChoi
     public void onBindViewHolder(SingleChoiceQuestionAdapter.ViewHolder holder, int position) {
         int position1 = holder.getAdapterPosition();
         SingleChoiceQuestion singleChoiceQuestion = singleChoiceQuestionArrayList.get(holder.getAdapterPosition());
-
-//            Log.e("Name",singleCategory.getName());
+        holder.rb0.setChecked(false);
+        holder.rb1.setChecked(false);
+        holder.rb2.setChecked(false);
+        holder.rb3.setChecked(false);
         holder.question.setText(singleChoiceQuestion.getQuestion());
         holder.rb0.setText(singleChoiceQuestion.getOptions().get(0));
         holder.rb1.setText(singleChoiceQuestion.getOptions().get(1));
@@ -75,14 +77,13 @@ public class SingleChoiceQuestionAdapter extends RecyclerView.Adapter<SingleChoi
             rb1 = (RadioButton) itemView.findViewById(R.id.singleChoice1);
             rb2 = (RadioButton) itemView.findViewById(R.id.singleChoice2);
             rb3 = (RadioButton) itemView.findViewById(R.id.singleChoice3);
-
             group = (RadioGroup) itemView.findViewById(R.id.radioGroup);
             group.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
                 @Override
                 public void onCheckedChanged(RadioGroup radioGroup, int i) {
                     View radioButton = radioGroup.findViewById(radioGroup.getCheckedRadioButtonId());
                     index = radioGroup.indexOfChild(radioButton);
-//                    Log.e("Index", String.valueOf(index) + " and " + String.valueOf(i));
+
                 }
             });
         }

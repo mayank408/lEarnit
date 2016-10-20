@@ -2,6 +2,7 @@ package com.example.the_dagger.learnit.model;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.util.Log;
 import android.view.View;
 
 import com.example.the_dagger.learnit.abs.Question;
@@ -13,6 +14,9 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static android.icu.lang.UCharacter.GraphemeClusterBreak.T;
+import static com.bumptech.glide.gifdecoder.GifHeaderParser.TAG;
 
 /**
  * Created by the-dagger on 1/10/16.
@@ -58,6 +62,7 @@ public class SingleChoiceQuestion implements Parcelable {
         try {
             this.question = question.get("question").toString();
             this.answer = question.getInt("answer");
+            Log.e("SingleChoiceAnswer: ", String.valueOf(answer) );
             int i;
             for(i = 0;i<question.getJSONArray("options").length();i++ )
                 this.options.add(question.getJSONArray("options").getString(i));
