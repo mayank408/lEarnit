@@ -3,6 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/splash_image"
     android:layout_width="match_parent"
-    android:layout_margin="32dp"
     android:layout_height="match_parent"
+    android:scaleType="centerInside"
     tools:context=".activity.SplashActivity"/>
